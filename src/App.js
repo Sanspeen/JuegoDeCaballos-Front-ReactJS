@@ -3,19 +3,40 @@ import GoogleLogin from 'react-google-login';
 import { useState } from "react";
 import HomeLogged from "./components/HomeLoggedFolder/HomeLogged";
 
-
 function App() {
 
+
+  const tracks = [
+    {
+        "name": "Pista de hielo",
+        "carriels": [1, 2, 3],
+        "km": 10
+    },
+    {
+        "name": "Pista las estrellas",
+        "carriels": [1, 2, 3, 4, 5],
+        "km": 20
+    },
+    {
+        "name": "Pista me este es mi ultimo WIII!",
+        "carriels": [1, 2, 3, 4, 5, 6, 7],
+        "km": 30,
+    }
+  ]
 
   const [user, setUser] = useState(
     { 
       "id": "",
       "email": "",
-      "name": ""
+      "name": "",
+      "carriel": 0,
+      "money":0
     });
     
   const respuestaGoogle = (respuesta) => {
-    setUser(respuesta.profileObj);
+    console.log(respuesta.profileObj)
+    setUser({"id": respuesta.profileObj.googleId, "email": respuesta.profileObj.email, "name": respuesta.profileObj.name, "carriel":  0, "money": 0});
+    console.log(user)
   }
 
 
@@ -39,7 +60,7 @@ function App() {
                 </form>
             </section>
         </> : 
-          <HomeLogged user = {user}/>
+          <HomeLogged user = {user} tracks = {tracks} setUser = {setUser}/>
       }
     </Fragment>
 
