@@ -1,19 +1,53 @@
 import { Fragment } from "react/cjs/react.production.min";
-import Home from "./pages/Home";
+import GoogleLogin from 'react-google-login';
 import { useState } from "react";
+import HomeLogged from "./components/HomeLogged";
 
 
 function App() {
 
-  const [user, setUser] = useState();
+
+  const [user, setUser] = useState(
+    { 
+      "id": "",
+      "email": "",
+      "name": ""
+    });
+    
 
   
 
+  const respuestaGoogle = (respuesta) => {
+    console.log(respuesta.profileObj);
+    setUser(respuesta.profileObj);
+
+  }
+
+
+
   return (
     <Fragment>
-      <Home user = {user}></Home>
-      <br></br>
+
+      {user.id === "" ?
+        <>
+          <section className = "homeSection">
+                <form className = "homeForm">
+                    <h1>Bienvenidos a carreras de caballos</h1>
+                    <h3>Inicia sesion con google para jugar</h3>
+                    <GoogleLogin className = "enterWithGoogle"
+                        clientId="230300571132-kh8b7curlmciegil8uli8m87f3pfh41r.apps.googleusercontent.com"
+                        buttonText="Inciar Sesion"
+                        onSuccess={respuestaGoogle}
+                        onFailure={respuestaGoogle}
+                        cookiePolicy={'single_host_origin'}
+                    />
+                </form>
+            </section>
+        </> : 
+          <HomeLogged user = {user}/>
+      }
     </Fragment>
+
   );
 }
 
