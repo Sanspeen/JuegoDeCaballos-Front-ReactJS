@@ -17,6 +17,7 @@ const tracks = [
         "km": 60
     }
 ]
+
 console.log(tracks);
 export default function HomeLogged(user) {
 
@@ -34,7 +35,7 @@ export default function HomeLogged(user) {
                     <h1>Bienvenidos a carreras de caballos <br></br> señor {user.user.name}</h1>
                     <h6>Seleccione la pista en la que desea apostar</h6>
                     <select className = "chooseTrack" onChange={handlerChargeCarriels}>
-                        <option value={1}>Seleccione una pista para jugar.</option>
+                        <option value={-1}>Seleccione una pista para jugar.</option>
                         {
                             tracks.map((item, i)=>(
                                 <option key = {i} value={i}>{item.name}</option>
@@ -43,11 +44,14 @@ export default function HomeLogged(user) {
                     </select>
                     <h6>Seleccione el carril al que apostará.</h6>
                     <select className = "chooseCarriel">
-                        <option value={1}>Seleccione un carril para jugar.</option>
+                        <option value={-1}>Seleccione un carril para jugar.</option>
                         {
-                            tracks[carriels].carriels.map((item, i)=>(
-                                <option key = {i} value={i}>{item}</option>
-                            ))
+                            carriels > -1 &&
+                            (
+                                tracks[carriels].carriels.map((item, i)=>(
+                                    <option key = {i} value={i}>{item}</option>
+                                ))
+                            )
                         }
                     </select>
                     <h6>Ingrese la suma de dinero que apostará.</h6>
