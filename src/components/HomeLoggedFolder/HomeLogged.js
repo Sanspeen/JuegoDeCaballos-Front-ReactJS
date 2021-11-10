@@ -1,31 +1,42 @@
 import React, { useState } from 'react'
+import BetForm from './BetForm';
 
 const tracks = [
     {
         "name": "Pista de hielo",
         "carriels": [1, 2, 3],
-        "km": 20
+        "km": 10
     },
     {
         "name": "Pista las estrellas",
         "carriels": [1, 2, 3, 4, 5],
-        "km": 40
+        "km": 20
     },
     {
         "name": "Pista me este es mi ultimo WIII!",
         "carriels": [1, 2, 3, 4, 5, 6, 7],
-        "km": 60
+        "km": 30,
     }
 ]
 
-console.log(tracks);
 export default function HomeLogged(user) {
 
-    const [carriels, setCarriels] = useState(1);
+    const [carriels, setCarriels] = useState(-1);
+    const [chosenCarriel, setChosenCarriel] = useState(-1)
 
     const handlerChargeCarriels = function(e) {
         const option = e.target.value;
         setCarriels(option);
+
+        /*Vuelve a settear chosenCarriel a -1 cuando este tambien vuelve a esa posicion para evitar bugs*/
+        if(option === -1){
+            setChosenCarriel(option);
+        }
+    }
+
+    const handlerChargeCarrielsChosen = function(e) {
+        const optionCarrielChosen = e.target.value;
+        setChosenCarriel(optionCarrielChosen);
     }
 
     return (
@@ -43,7 +54,7 @@ export default function HomeLogged(user) {
                         }
                     </select>
                     <h6>Seleccione el carril al que apostará.</h6>
-                    <select className = "chooseCarriel">
+                    <select className = "chooseCarriel" onChange = {handlerChargeCarrielsChosen}>
                         <option value={-1}>Seleccione un carril para jugar.</option>
                         {
                             carriels > -1 &&
@@ -54,9 +65,11 @@ export default function HomeLogged(user) {
                             )
                         }
                     </select>
-                    <h6>Ingrese la suma de dinero que apostará.</h6>
-                    <input placeholder = "Dinero"></input>
-                    <button>Iniciar juego!</button>
+                    {
+                        (chosenCarriel > -1 && carriels > -1) ?
+                            <BetForm isButtonDisabled = {true} />:
+                            <BetForm isButtonDisabled = {false} />
+                    }
                 </form>
             </section>
         </>

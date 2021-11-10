@@ -1,7 +1,7 @@
 import { Fragment } from "react/cjs/react.production.min";
 import GoogleLogin from 'react-google-login';
 import { useState } from "react";
-import HomeLogged from "./components/HomeLogged";
+import HomeLogged from "./components/HomeLoggedFolder/HomeLogged";
 
 
 function App() {
@@ -14,13 +14,8 @@ function App() {
       "name": ""
     });
     
-
-  
-
   const respuestaGoogle = (respuesta) => {
-    console.log(respuesta.profileObj);
     setUser(respuesta.profileObj);
-
   }
 
 
