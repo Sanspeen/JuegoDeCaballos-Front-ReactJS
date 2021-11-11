@@ -1,13 +1,14 @@
 import React, { useRef } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 
 export default function BetForm(props) {
 
     const money = useRef();
 
+    let carriel = parseInt(props.chosenCarriel) + 1; 
     const handleGame = () =>{
-        props.setUser({"id": props.user.id, "email": props.user.email, "name": props.user.name, "carriel":  0, "money": money.current.value});
+        props.setUser({"id": props.user.id, "email": props.user.email, "name": props.user.name, "betCarriel":  carriel, "money": money.current.value});
+        window.location.replace('http://localhost:3000/hola'); 
     }
 
     return (

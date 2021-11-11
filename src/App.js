@@ -1,26 +1,30 @@
 import { Fragment } from "react/cjs/react.production.min";
-import GoogleLogin from 'react-google-login';
 import { useState } from "react";
 import HomeLogged from "./components/HomeLoggedFolder/HomeLogged";
+import Home from "./components/Home";
+import GamePage from "./components/GamePage";
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {
+
+  /*Crear estructura de datos del juego*/
 
 
   const tracks = [
     {
         "name": "Pista de hielo",
         "carriels": [1, 2, 3],
-        "km": 10
+        "km": 3
     },
     {
         "name": "Pista las estrellas",
         "carriels": [1, 2, 3, 4, 5],
-        "km": 20
+        "km": 4
     },
     {
         "name": "Pista me este es mi ultimo WIII!",
         "carriels": [1, 2, 3, 4, 5, 6, 7],
-        "km": 30,
+        "km": 5,
     }
   ]
 
@@ -29,41 +33,21 @@ function App() {
       "id": "",
       "email": "",
       "name": "",
-      "carriel": 0,
+      "betCarriel": 0,
       "money":0
     });
     
-  const respuestaGoogle = (respuesta) => {
-    console.log(respuesta.profileObj)
-    setUser({"id": respuesta.profileObj.googleId, "email": respuesta.profileObj.email, "name": respuesta.profileObj.name, "carriel":  0, "money": 0});
-    console.log(user)
-  }
-
-
-
   return (
-    <Fragment>
+    <Router>
+      <Routes>
+        {user.id === "" ?
+          <Route path = "/" element={<Home setUser = {setUser}></Home>}></Route>: 
+          <Route exact path = "/" element={<HomeLogged user = {user} tracks = {tracks} setUser = {setUser}/>}></Route>
+        }
+        <Route path = "hola" element={<GamePage setUser = {setUser}></GamePage>}></Route>
 
-      {user.id === "" ?
-        <>
-          <section className = "homeSection">
-                <form className = "homeForm">
-                    <h1>Bienvenidos a carreras de caballos</h1>
-                    <h3>Inicia sesion con google para jugar</h3>
-                    <GoogleLogin className = "enterWithGoogle"
-                        clientId="230300571132-kh8b7curlmciegil8uli8m87f3pfh41r.apps.googleusercontent.com"
-                        buttonText="Inciar Sesion"
-                        onSuccess={respuestaGoogle}
-                        onFailure={respuestaGoogle}
-                        cookiePolicy={'single_host_origin'}
-                    />
-                </form>
-            </section>
-        </> : 
-          <HomeLogged user = {user} tracks = {tracks} setUser = {setUser}/>
-      }
-    </Fragment>
-
+      </Routes>
+    </Router>
   );
 }
 
