@@ -16,7 +16,7 @@ export default function Home(props) {
                           onSuccess={respuestaGoogle}
                           onFailure={respuestaGoogle}
                           cookiePolicy={'single_host_origin'}
-                      />
+                      ></GoogleLogin>
               </section>
         </>
     )

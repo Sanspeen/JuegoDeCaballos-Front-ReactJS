@@ -1,4 +1,3 @@
-import { Fragment } from "react/cjs/react.production.min";
 import { useState } from "react";
 import HomeLogged from "./components/HomeLoggedFolder/HomeLogged";
 import Home from "./components/Home";
@@ -7,8 +6,7 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {
 
-  /*Crear estructura de datos del juego*/
-
+  const [game, setGame] = useState();
 
   const tracks = [
     {
@@ -42,10 +40,9 @@ function App() {
       <Routes>
         {user.id === "" ?
           <Route path = "/" element={<Home setUser = {setUser}></Home>}></Route>: 
-          <Route exact path = "/" element={<HomeLogged user = {user} tracks = {tracks} setUser = {setUser}/>}></Route>
+          <Route exact path = "/" element={<HomeLogged user = {user} tracks = {tracks} setUser = {setUser} setGame = {setGame} game = {game}/> }></Route>
         }
-        <Route path = "hola" element={<GamePage setUser = {setUser}></GamePage>}></Route>
-
+        <Route path = "hola" element={<GamePage game = {game} user = {user} setUser = {setUser} tracks = {tracks} ></GamePage>}></Route>
       </Routes>
     </Router>
   );

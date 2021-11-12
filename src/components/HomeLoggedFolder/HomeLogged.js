@@ -50,7 +50,7 @@ export default function HomeLogged(props) {
                     </select>
                     {
                         (chosenCarriel > -1 && carriels > -1) ?
-                            <BetForm isButtonDisabled = {true} tracks = {props.tracks} user = {props.user} setUser = {props.setUser} chosenCarriel = {chosenCarriel}/>:
+                            <BetForm isButtonDisabled = {true} tracks = {props.tracks} user = {props.user} setUser = {props.setUser} chosenCarriel = {chosenCarriel} setGame = {props.setGame}/>:
                             <BetForm isButtonDisabled = {false} />
                     }
                 </form>
