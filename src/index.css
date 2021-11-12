@@ -123,6 +123,13 @@ code {
   width: 6%;
 }
 
+#finishLine{
+  height: 70%;
+  width: 2%;
+  color: red;
+  position:fixed;
+}
+
 
 
 

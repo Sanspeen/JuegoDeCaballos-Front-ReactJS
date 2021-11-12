@@ -22,7 +22,7 @@ export default function BetForm(props) {
                 <>
                         <h6>Ingrese la suma de dinero que apostará.</h6>
                         <input type = "number"  placeholder = "Dinero" class="form-control" ref = {money}></input>
-                        <Link to = "/hola"><button type = "button" className="btn btn-dark" onClick = {handleGame}>Iniciar juego!</button></Link>
+                        <Link to = "/game"><button type = "button" className="btn btn-dark" onClick = {handleGame}>Iniciar juego!</button></Link>
                 </>:<>
                     <h6>Ingrese la suma de dinero que apostará.</h6>
                     <input placeholder = "Dinero" class="form-control" ref = {money}></input>

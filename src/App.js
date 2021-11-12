@@ -1,3 +1,4 @@
+/*Bienvenido coach :D*/
 import { useState } from "react";
 import HomeLogged from "./components/HomeLoggedFolder/HomeLogged";
 import Home from "./components/Home";
@@ -25,7 +26,7 @@ function App() {
 
     {
       "movement": 0
-  }
+    }
       
   ]);
 
@@ -35,17 +36,17 @@ function App() {
     {
         "name": "Pista de hielo",
         "carriels": [1, 2, 3],
-        "km": 3
+        "km": 300
     },
     {
         "name": "Pista las estrellas",
         "carriels": [1, 2, 3, 4, 5],
-        "km": 4
+        "km": 500
     },
     {
         "name": "Pista me este es mi ultimo WIII!",
         "carriels": [1, 2, 3, 4, 5, 6],
-        "km": 5,
+        "km": 600,
     }
   ]
 
@@ -55,15 +56,15 @@ function App() {
     <Router>
       <Routes>
         {user.id === "" ?
-          <Route path = "/" element={<Home setUser = {setUser}></Home>}></Route>: 
+          <Route path = "/" element={<Home setUser = {setUser} user = {user}></Home>}></Route>: 
           <Route exact path = "/" element={<HomeLogged user = {user} tracks = {tracks} setUser = {setUser} setGame = {setGame} game = {game}/> }></Route>
         }
-        <Route path = "hola" element={<GamePage game = {game} 
-        user = {user} 
-        setUser = {setUser} 
-        tracks = {tracks} 
-        horsesPosition = {horsesPosition} 
-        setHorsesPosition = {setHorsesPosition}>
+        <Route path = "game" element={<GamePage game = {game} 
+          user = {user} 
+          setUser = {setUser} 
+          tracks = {tracks} 
+          horsesPosition = {horsesPosition} 
+          setHorsesPosition = {setHorsesPosition}>
         </GamePage>}></Route>
       </Routes>
     </Router>

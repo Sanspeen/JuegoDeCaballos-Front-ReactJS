@@ -1,7 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import GoogleLogin from 'react-google-login';
 
 export default function Home(props) {
+    const URL = "http://localhost:8080/";
+
+    const fetchApiGetUserById = async () =>{
+        const googleId = props.user.googleId;
+        const response = await fetch(URL + googleId);
+        const responseJSON = await response.json();
+        props.setUser(responseJSON);
+        
+    }
+
+    const fetchApiCreatePlayer = async () =>{
+        const response = await fetch(`${URL}/createPlayer`,
+                {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(props.user)
+                }
+            )
+    }
+
     const respuestaGoogle = (respuesta) => {
         props.setUser({"id": respuesta.profileObj.googleId, "email": respuesta.profileObj.email, "name": respuesta.profileObj.name, "betCarriel":  0, "money": 0});
     }

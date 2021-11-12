@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import BetForm from './BetForm';
 
 
 
 export default function HomeLogged(props) {
-
-
+    const URL = "http://localhost:8080";
     const [carriels, setCarriels] = useState(-1);
     const [chosenCarriel, setChosenCarriel] = useState(-1)
     const [chosenTrack, setChosenTrack] = useState()
@@ -28,6 +27,31 @@ export default function HomeLogged(props) {
         const optionTrackChosen = e.target.value;
         setChosenTrack(optionTrackChosen);
     }
+
+    const fetchApiGetUserById = async () =>{
+        const googleId = props.user.googleId;
+        const response = await fetch(URL + googleId);
+        console.log(response.status)
+        const responseJSON = await response.json();
+        props.setUser(responseJSON);
+    }
+
+    const fetchApiCreatePlayer = async () =>{
+        const response = await fetch(`${URL}/createPlayer`,
+                {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(props.user)
+                }
+            )
+    }
+
+    useEffect(() => {
+        fetchApiCreatePlayer();
+    }, [])
 
     return (
         <>
