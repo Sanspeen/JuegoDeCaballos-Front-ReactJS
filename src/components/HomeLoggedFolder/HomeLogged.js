@@ -5,8 +5,10 @@ import BetForm from './BetForm';
 
 export default function HomeLogged(props) {
 
+
     const [carriels, setCarriels] = useState(-1);
     const [chosenCarriel, setChosenCarriel] = useState(-1)
+    const [chosenTrack, setChosenTrack] = useState()
 
     const handlerChargeCarriels = function(e) {
         const option = e.target.value;
@@ -22,13 +24,18 @@ export default function HomeLogged(props) {
         setChosenCarriel(optionCarrielChosen);
     }
 
+    const handlerChangeTrackChosen = function(e) {
+        const optionTrackChosen = e.target.value;
+        setChosenTrack(optionTrackChosen);
+    }
+
     return (
         <>
           <section className = "homeSection">
                 <form className = "homeFormLogged">
                     <h1>Bienvenidos a carreras de caballos <br></br> señor {props.user.name}</h1>
                     <h6>Seleccione la pista en la que desea apostar</h6>
-                    <select className = "form-select" onChange={handlerChargeCarriels}>
+                    <select className = "form-select" onChange={handlerChargeCarriels} onClick = {handlerChangeTrackChosen}>
                         <option value={-1}>Seleccione una pista para jugar.</option>
                         {
                             props.tracks.map((item, i)=>(
@@ -37,7 +44,7 @@ export default function HomeLogged(props) {
                         }
                     </select>
                     <h6>Seleccione el carril al que apostará.</h6>
-                    <select className = "form-select" onChange = {handlerChargeCarrielsChosen}>
+                    <select className = "form-select" onChange = {handlerChargeCarrielsChosen} >
                         <option value={-1}>Seleccione un carril para jugar.</option>
                         {
                             carriels > -1 &&
@@ -50,7 +57,15 @@ export default function HomeLogged(props) {
                     </select>
                     {
                         (chosenCarriel > -1 && carriels > -1) ?
-                            <BetForm isButtonDisabled = {true} tracks = {props.tracks} user = {props.user} setUser = {props.setUser} chosenCarriel = {chosenCarriel} setGame = {props.setGame}/>:
+                            <BetForm isButtonDisabled = {true}
+                                tracks = {props.tracks}
+                                user = {props.user}
+                                setUser = {props.setUser}
+                                chosenCarriel = {chosenCarriel}
+                                setGame = {props.setGame}
+                                chosenTrack = {chosenTrack}
+                                />
+                                :
                             <BetForm isButtonDisabled = {false} />
                     }
                 </form>

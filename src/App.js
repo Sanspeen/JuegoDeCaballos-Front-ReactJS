@@ -21,19 +21,12 @@ function App() {
     },
     {
         "name": "Pista me este es mi ultimo WIII!",
-        "carriels": [1, 2, 3, 4, 5, 6, 7],
+        "carriels": [1, 2, 3, 4, 5, 6],
         "km": 5,
     }
   ]
 
-  const [user, setUser] = useState(
-    { 
-      "id": "",
-      "email": "",
-      "name": "",
-      "betCarriel": 0,
-      "money":0
-    });
+  const [user, setUser] = useState( { "id": "" } );
     
   return (
     <Router>
