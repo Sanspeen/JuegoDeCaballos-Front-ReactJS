@@ -6,7 +6,28 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {
 
-  const [horsesPosition, setHorsesPosition] = useState();
+  const [horsesPosition, setHorsesPosition] = useState([
+    {
+      "movement": 0
+    },
+    {
+      "movement": 0
+    },
+    {
+        "movement": 0
+    },
+    {
+        "movement": 0
+    },
+    {
+        "movement": 0
+    },
+
+    {
+      "movement": 0
+  }
+      
+  ]);
 
   const [game, setGame] = useState();
 
