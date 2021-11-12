@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {
 
+  const [horsesPosition, setHorsesPosition] = useState();
+
   const [game, setGame] = useState();
 
   const tracks = [
@@ -35,7 +37,13 @@ function App() {
           <Route path = "/" element={<Home setUser = {setUser}></Home>}></Route>: 
           <Route exact path = "/" element={<HomeLogged user = {user} tracks = {tracks} setUser = {setUser} setGame = {setGame} game = {game}/> }></Route>
         }
-        <Route path = "hola" element={<GamePage game = {game} user = {user} setUser = {setUser} tracks = {tracks} ></GamePage>}></Route>
+        <Route path = "hola" element={<GamePage game = {game} 
+        user = {user} 
+        setUser = {setUser} 
+        tracks = {tracks} 
+        horsesPosition = {horsesPosition} 
+        setHorsesPosition = {setHorsesPosition}>
+        </GamePage>}></Route>
       </Routes>
     </Router>
   );
