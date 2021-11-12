@@ -64,7 +64,7 @@ code {
 .game h1{
   color: aliceblue;
   font-family:fantasy;
-  margin-bottom: 2%;
+  margin-bottom: 1%;
 }
 
 .track{
@@ -72,8 +72,8 @@ code {
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  width: 50%;
-  height: 60%;
+  width: 60%;
+  height: 70%;
   border-radius: 10px;
   background-color: peru;
   border: 20px solid green;
@@ -81,9 +81,15 @@ code {
 
 #carriels{
   width: 100%;
-  height: 10%;
-  margin-bottom: 4%;
+  height: 20%;
+  margin-bottom: 3%;
   color: white;
+}
+
+.horses{
+  position: relative;
+  height: 6%;
+  width: 6%;
 }
 
 

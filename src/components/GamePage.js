@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import horse from "../media/horse.png"
+
 
 export default function GamePage(props) {
     return (
@@ -7,7 +9,12 @@ export default function GamePage(props) {
             <div className  = "track">
                 {
                     props.tracks[props.game.selectedTrack].carriels.map((i)=>(
-                        <hr key = {i} id = "carriels"></hr>
+                        <>
+                            <img src = {horse} className = "horses"/>
+
+                            <hr key = {i} id = "carriels"></hr>
+                        </>
+                        
                     ))
                 } 
             </div>
